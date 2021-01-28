@@ -1,5 +1,5 @@
-from tf_layers import *
-from tf_tools import *
+from nn.tf_layers.Inception import *
+from nn.tf_tools import *
 
 
 class GoogLeNetV1(keras.Model):
