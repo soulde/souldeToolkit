@@ -1,16 +1,10 @@
 from tf_layers import *
-
-
-def set_gpu_memory():
-    physical_devices = tf.config.list_physical_devices('GPU')
-
-    tf.config.experimental.set_memory_growth(physical_devices[0], True)
-    assert tf.config.experimental.get_memory_growth(physical_devices[0])
+from tf_tools import *
 
 
 class GoogLeNetV1(keras.Model):
     def __init__(self, num_class):
-        super(GoogLeNet, self).__init__()
+        super(GoogLeNetV1, self).__init__()
 
         self.b1 = keras.models.Sequential([
             layers.Conv2D(64, kernel_size=(7, 7), strides=2, padding='same', activation='relu'),
@@ -63,8 +57,6 @@ if __name__ == '__main__':
     set_gpu_memory()
 
     net = GoogLeNetV1(1000)
-    X = tf.random.uniform([1, 224, 224, 3])
 
-    for blk in net.layers:
-        X = blk(X)
-        print('output shape: ', X.shape)
+    print_layers_shape(net)
+
