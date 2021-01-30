@@ -8,12 +8,14 @@ class GoogLeNetV1(keras.Model):
 
         self.b1 = keras.models.Sequential([
             layers.Conv2D(64, kernel_size=(7, 7), strides=2, padding='same', activation='relu'),
-            layers.MaxPool2D(pool_size=(3, 3), strides=2, padding='same')
+            layers.MaxPool2D(pool_size=(3, 3), strides=2, padding='same'),
+            layers.BatchNormalization()
         ])
 
         self.b2 = keras.models.Sequential([
             layers.Conv2D(64, kernel_size=(1, 1)),
             layers.Conv2D(192, kernel_size=(3, 3), padding='same'),
+            layers.BatchNormalization(),
             layers.MaxPool2D(pool_size=(3, 3), strides=2, padding='same')
         ])
 
@@ -43,7 +45,7 @@ class GoogLeNetV1(keras.Model):
             layers.Dense(num_class)
         ])
 
-    def call(self, inputs):
+    def call(self, inputs, training=None, mask=None):
         inputs = self.b1(inputs)
         inputs = self.b2(inputs)
         inputs = self.b3(inputs)
@@ -58,5 +60,5 @@ if __name__ == '__main__':
 
     net = GoogLeNetV1(1000)
 
-    print_layers_shape(net)
+    print_layers_shape(net, [224, 224, 3])
 

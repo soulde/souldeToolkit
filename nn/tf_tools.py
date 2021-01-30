@@ -1,8 +1,8 @@
 import tensorflow as tf
 
 
-def print_layers_shape(nn):
-    x = tf.random.uniform([1, 224, 224, 3])
+def print_layers_shape(nn, input_shape):
+    x = tf.random.uniform([1] + input_shape)
 
     for blk in nn.layers:
         x = blk(x)
