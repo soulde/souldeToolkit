@@ -1,12 +1,8 @@
 #!/bin/sh
 sudo add-apt-repository "deb http://security.ubuntu.com/ubuntu xenial-security main"
 sudo apt update
-sudo apt-get install \
-gt5-default \
+sudo apt-get install -y \
 build-essential \
-cmake \
-cmake-qt-gui \
-git \
 libgtk2.0-dev \
 pkg-config \
 libavcodec-dev \
@@ -14,8 +10,6 @@ libavformat-dev \
 libswscale-dev \
 libjasper1 \
 libjasper-dev \
-libtbb2 \
-libtbb-dev \
 libjpeg-dev \
 libpng-dev \
 libtiff-dev \
@@ -25,8 +19,6 @@ libgtkglext1-dev \
 libgstreamer1.0-dev \
 libavresample-dev  \
 libgphoto2-dev \
-libopenblas-dev \
-libatlas-base-dev \
 doxygen \
 libgstreamer-ocaml-dev \
 libgstreamer-plugins-bad1.0-dev \
